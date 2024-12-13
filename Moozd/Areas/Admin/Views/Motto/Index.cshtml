@@ -1,0 +1,65 @@
+﻿@model Motto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="container p-0 mt-5">
+    <div class="mt-3 w-100">
+        <table class="table table-bordered table-hover w-100 centering">
+            <thead class="table-info">
+                <tr>
+                    <th><p class="p-0 m-0">Motto</p></th>
+                    <th><p class="p-0 m-0">Description</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>@Model.MainMotto</td>
+                        <td>@Model.Description</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Motto</h3></div>
+        <div class="card-body">
+            <form method="post" action="/admin/Motto/index">
+                @Html.AntiForgeryToken()
+                <input asp-for="ID" type="hidden"/>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3 mb-md-3 d-flex align-items-center justify-content-between">
+                            <label for="MainMotto">New Motto</label>
+                            <div class="w-50">
+                                <input asp-for="MainMotto" type="text" class="form-control w-100" id="MainMotto" placeholder="Enter New Motto" />
+                                <span asp-validation-for="MainMotto" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3 mb-md-3 d-flex align-items-center justify-content-between">
+                            <label for="Description">New Description</label>
+                            <div class="w-50">
+                                <input asp-for="Description" type="text" class="form-control w-100" id="Description" placeholder="Enter New Descrption" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 mb-0 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+

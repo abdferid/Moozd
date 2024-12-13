@@ -1,0 +1,64 @@
+﻿@model Step
+@{
+    ViewData["Title"] = "Add";
+    int serviceID = (int)ViewData["ServiceID"];
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Step</h3></div>
+                    <div class="card-body">
+                        <form method="post" action="/admin/Step/Add">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" value="@serviceID" asp-for="ServiceID"/>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3 mb-md-3 d-flex align-items-center justify-content-between">
+                                        <label for="Title">Title</label>
+                                        <div class="w-50">
+                                            <input asp-for="Title" type="text" class="form-control w-100" id="Title" placeholder="Enter Title" />
+                                            <span asp-validation-for="Title" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3 mb-md-3">
+                                        <label for="Description" class="w-100 text-center mb-3">Description</label>
+                                        <div class="w-100">
+                                            <textarea asp-for="Description" name="Description" id="text"></textarea>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-0 d-flex justify-content-between">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="submit" asp-area="Admin" asp-controller="Step" asp-action="Index" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#text'), {
+            toolbar: [
+                'heading', '|', 'bold', 'italic', 'underline', '|',
+                'bulletedList', 'numberedList', '|',
+                'alignment', '|', 'undo', 'redo'
+            ]
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

@@ -1,0 +1,77 @@
+﻿@model About
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="container p-0 mt-5">
+    <div class="mt-3 w-100">
+        <table class="table table-bordered table-hover w-100 centering">
+            <thead class="table-info">
+                <tr>
+                    <th><p class="p-0 m-0">Text</p></th>
+                    <th><p class="p-0 m-0">Image</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>@Model.Text</td>
+                        <td> <img src="@("~/Images/"+Model.AboutImg)" asp-append-version="true" width="100px" height="100px" /></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit About</h3></div>
+        <div class="card-body">
+            <form method="post" action="/admin/About/index" enctype="multipart/form-data">
+                <input asp-for="ID" type="hidden"/>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3 mb-md-3">
+                            <label for="Text" class="w-100 text-center mb-3">New Text</label>
+                            <div class="w-100">
+                                <textarea asp-for="Text" name="Text" id="text"></textarea>
+                                <span asp-validation-for="Text" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3 mb-md-3 d-flex align-items-center justify-content-between">
+                            <label for="AboutImg">New Image</label>
+                            <div class="w-50">
+                                <label asp-for="AboutImgFile" class="control-label"></label>
+                                <div class="w-100">
+                                    <input asp-for="AboutImgFile" class="custom-file-input d-none" type="file" />
+                                    <span asp-validation-for="AboutImg" class="text-danger d-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 mb-0 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#text'), {
+            toolbar: [
+                'heading', '|', 'bold', 'italic', 'underline', '|',
+                'bulletedList', 'numberedList', '|',
+                'alignment', '|', 'undo', 'redo'
+            ]
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

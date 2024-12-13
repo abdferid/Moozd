@@ -1,0 +1,86 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "SingleProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- banner -->
+<div class="mil-inner-banner">
+    <div class="mil-banner-content mil-up">
+        <div class="mil-animation-frame">
+            <div class="mil-animation mil-position-4 mil-dark mil-scale" data-value-1="6" data-value-2="1.4"></div>
+        </div>
+        <div class="container">
+            <ul class="mil-breadcrumbs mil-mb-60">
+                <li><a asp-action="index" asp-controller="home">Homepage</a></li>
+                <li><a asp-action="index" asp-controller="portfolio">Portfolio</a></li>
+                <li><a href="">Project</a></li>
+            </ul>
+            <h1 class="mil-mb-60">@Model.Name</h1>
+            <a href="#project" class="mil-link mil-dark mil-arrow-place mil-down-arrow">
+                <span>Read more</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- banner end -->
+<!-- project -->
+<section>
+    <div class="container mil-p-120-120" id="project">
+        <div class="row justify-content-between mil-mb-120">
+            <div class="col-lg-4">
+
+                <div class="mil-p-0-120">
+                    @Html.Raw(Model.Description)
+                    
+                    @if(Model.WebsiteLink is not null)
+                    {
+                        <a data-no-swup href="@Model.WebsiteLink" target="_blank" class="mil-link mil-dark mil-up  mil-arrow-place">
+                            <span>Visit website</span>
+
+                        </a>
+                    }
+
+                    
+                </div>
+
+            </div>
+            <div class="col-lg-7">
+                @foreach(var image in Model.ProjectImages)
+                {
+                    <div class="mil-image-frame mil-horizontal mil-up mil-mb-30">
+						<img src="@("~/Images/"+image.ProjectImg)" asp-append-version="true" alt="image">
+                        <a data-fancybox="gallery" data-no-swup href="@("~/Images/"+image.ProjectImg)" asp-append-version="true" class="mil-zoom-btn">
+                            <img src="@("~/Icons/zoom.svg")" asp-append-version="true" alt="zoom">
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="mil-works-nav mil-up d-flex justify-content-center">
+            
+            <a asp-action="index" class="mil-link mil-dark">
+                <span>All projects</span>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- project end -->
+<!-- call to action -->
+<section class="mil-soft-bg">
+    <div class="container mil-p-120-120">
+        <div class="row">
+            <div class="col-lg-10">
+
+                <span class="mil-suptitle mil-suptitle-right mil-suptitle-dark mil-up">Looking to make your mark? We'll help you turn <br> your project into a success story.</span>
+
+            </div>
+        </div>
+        <div class="mil-center">
+            <h2 class="mil-up mil-mb-60">Ready to bring your <span class="mil-thin">ideas to</span> life? <br> We're <span class="mil-thin">here to help</span></h2>
+            <div class="mil-up"><a href="contact.html" class="mil-button mil-arrow-place"><span>Contact us</span></a></div>
+        </div>
+    </div>
+</section>
+<!-- call to action end -->

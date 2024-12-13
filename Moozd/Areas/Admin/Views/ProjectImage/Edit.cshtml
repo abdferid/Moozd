@@ -1,0 +1,46 @@
+﻿@model ProjectImage
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Image</h3></div>
+                    <div class="card-body">
+                        <form method="post" action="/admin/ProjectImage/Edit" enctype="multipart/form-data">
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="id">ID</label>
+                                <input asp-for="ID" type="text" class="form-control w-50" id="id" readonly />
+                                <input asp-for="ProjectID" type="hidden" value="@Model.ProjectID" />
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3 mb-md-3 d-flex align-items-center justify-content-between">
+                                        <label for="ProjectImgFile">New Image</label>
+                                        <div class="w-50">
+                                            <label asp-for="ProjectImgFile" class="control-label"></label>
+                                            <div class="w-100">
+                                                <input asp-for="ProjectImgFile" class="custom-file-input d-none" type="file" />
+                                                <span asp-validation-for="ProjectImg" class="text-danger d-block"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-0 d-flex justify-content-between">
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="submit" asp-area="Admin" asp-controller="ProjectImage" asp-action="Index" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
